@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Gurappa Mangala - Azure Cloud Architect and Sr. Azure DevOps Engineer with 10+ years of experience.">
+<title>Gurappa Mangala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a release pipeline. Career runs left-to-right as pipeline stages, then each stage expands into a job card below. */
+:root{
+  --bg:#f5f7fb; --surface:#ffffff; --fg:#141a2b; --muted:#5a6479; --line:#dde3ee;
+  --accent:#1f4fd1; --accent-soft:#e6ecfc; --ok:#13804f; --ok-soft:#e3f4ec;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c111d; --surface:#141b2b; --fg:#e7ebf4; --muted:#97a2b8; --line:#253047;
+  --accent:#7ea2ff; --accent-soft:#1b2747; --ok:#4fd197; --ok-soft:#12301f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c111d; --surface:#141b2b; --fg:#e7ebf4; --muted:#97a2b8; --line:#253047;
+  --accent:#7ea2ff; --accent-soft:#1b2747; --ok:#4fd197; --ok-soft:#12301f; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+.label{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* Hero */
+header{padding-block:64px 40px}
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(44px,7vw,84px);font-weight:800;letter-spacing:-.02em}
+.role{font:500 clamp(18px,2.2vw,22px)/1.4 var(--body);color:var(--muted);margin-top:14px}
+.role b{color:var(--fg);font-weight:600}
+.lede{max-width:62ch;margin-top:22px;font-size:17px}
+.contact{display:flex;flex-direction:column;gap:10px;min-width:0}
+.crow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.crow .label{width:64px;flex:none}
+.crow span.v{font:400 14px var(--mono);overflow-wrap:anywhere;flex:1;min-width:0}
+.crow button{font:500 12px var(--mono);background:var(--accent-soft);color:var(--accent);border:0;border-radius:6px;padding:6px 10px;cursor:pointer;flex:none}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:30px}
+.stat b{display:block;font:700 30px/1 var(--display)}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* Pipeline */
+section{padding-block:40px}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.sechead h2{font-size:30px;font-weight:700}
+.pipe-scroll{overflow-x:auto;padding-bottom:6px}
+.pipe{display:grid;grid-template-columns:repeat(6,minmax(150px,1fr));gap:0;min-width:900px;list-style:none;padding:0;margin:0}
+.stage{position:relative;padding:0 10px 0 0}
+.stage::before{content:"";position:absolute;top:13px;left:26px;right:0;height:2px;background:var(--line)}
+.stage:last-child::before{display:none}
+.dot{position:relative;width:28px;height:28px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;font:600 14px var(--mono)}
+.stage.run .dot{background:var(--accent);color:#fff}
+.stage.run .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--accent);opacity:.35;animation:pulse 2s ease-out infinite}
+@keyframes pulse{from{transform:scale(.8);opacity:.6}to{transform:scale(1.4);opacity:0}}
+@media (prefers-reduced-motion:reduce){.stage.run .dot::after{animation:none}}
+.stage a{display:block;text-decoration:none;color:inherit;margin-top:12px}
+.stage .co{font:600 15px/1.3 var(--body)}
+.stage .yr{font:400 12px var(--mono);color:var(--muted);margin-top:4px}
+.stage .st{font:500 11px var(--mono);color:var(--ok);margin-top:6px}
+.stage.run .st{color:var(--accent)}
+
+/* Jobs */
+.jobs{display:flex;flex-direction:column;gap:18px}
+.job{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px;display:grid;grid-template-columns:220px 1fr;gap:28px}
+.job .meta{display:flex;flex-direction:column;gap:6px;min-width:0}
+.job .meta h3{font-size:22px;font-weight:700}
+.job .when{font:400 13px var(--mono);color:var(--muted)}
+.badge{align-self:flex-start;font:500 11px var(--mono);background:var(--accent-soft);color:var(--accent);padding:4px 8px;border-radius:999px;margin-top:4px}
+.job .body{min-width:0;display:flex;flex-direction:column;gap:20px}
+.eng{display:flex;flex-direction:column;gap:8px}
+.eng h4{margin:0;font:600 16px var(--body)}
+.eng .client{font:400 13px var(--mono);color:var(--muted)}
+.eng ul{margin:4px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.eng + .eng{border-top:1px dashed var(--line);padding-top:18px}
+details summary{cursor:pointer;font:500 13px var(--mono);color:var(--accent);margin-top:6px;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+ "}
+details[open] summary::before{content:"− "}
+details ul{margin-top:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font:400 12px var(--mono);border:1px solid var(--line);border-radius:6px;padding:3px 7px;color:var(--muted)}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.skill h3{font:600 16px var(--body);margin-bottom:10px}
+.skill ul{margin:0;padding-left:18px;color:var(--fg);font-size:15px;display:flex;flex-direction:column;gap:4px}
+
+/* Certs */
+.certs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cert{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:border-color .15s}
+.cert:hover{border-color:var(--accent)}
+.cert .code{font:500 13px var(--mono);color:var(--accent)}
+.cert .nm{font:500 14px/1.35 var(--body)}
+.cert .vf{font:400 11px var(--mono);color:var(--muted);margin-top:auto}
+
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.edu div{border-left:2px solid var(--accent);padding-left:14px}
+.edu b{display:block;font-weight:600}
+.edu span{font-size:14px;color:var(--muted)}
+
+footer{padding-block:40px 60px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:20px}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:16px;padding:22px 20px}
+  .skills{grid-template-columns:1fr 1fr}
+  .certs{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  header{padding-block:40px 24px}
+  .skills,.edu{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <div class="label">Portfolio · Bangalore, India</div>
+      <h1 style="margin-top:14px">Gurappa Mangala</h1>
+      <p class="role"><b>Azure Cloud Architect</b> &amp; Senior Azure DevOps Engineer</p>
+      <p class="lede">10+ years designing, automating and running enterprise cloud platforms on Azure, AWS and GCP. I build reusable Terraform modules, Azure DevOps pipelines and secure, private-networked landing zones for Healthcare, Pharma, BFSI, Retail and Manufacturing clients.</p>
+      <div class="stats">
+        <div class="stat"><b>10+</b><span>years of experience</span></div>
+        <div class="stat"><b>8</b><span>cloud certifications</span></div>
+        <div class="stat"><b>3</b><span>clouds: Azure, AWS, GCP</span></div>
+      </div>
+    </div>
+    <div class="contact">
+      <div class="crow"><span class="label">Email</span><span class="v" id="em">gurappam7@gmail.com</span><button type="button" data-copy="em">Copy</button></div>
+      <div class="crow"><span class="label">Phone</span><span class="v" id="ph">+91 94942 26660</span><button type="button" data-copy="ph">Copy</button></div>
+      <div class="crow"><span class="label">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/gurappamangala" target="_blank" rel="noopener">in/gurappamangala</a></span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="wrap" aria-labelledby="pl">
+  <div class="sechead"><h2 id="pl">Career pipeline</h2><span class="label">10 yrs 4 mos total · 2015 → now</span></div>
+  <div class="pipe-scroll">
+    <ol class="pipe">
+      <li class="stage"><div class="dot">✓</div><a href="#softenger"><div class="co">Softenger</div><div class="yr">2015 – 2017</div><div class="st">succeeded</div></a></li>
+      <li class="stage"><div class="dot">✓</div><a href="#cognizant"><div class="co">Cognizant</div><div class="yr">2017 – 2021</div><div class="st">succeeded</div></a></li>
+      <li class="stage"><div class="dot">✓</div><a href="#hitachi"><div class="co">Hitachi Digital Services</div><div class="yr">2021 – 2024</div><div class="st">succeeded</div></a></li>
+      <li class="stage"><div class="dot">✓</div><a href="#convergent"><div class="co">Convergent IT</div><div class="yr">2024 – 2025</div><div class="st">succeeded</div></a></li>
+      <li class="stage"><div class="dot">✓</div><a href="#dextris"><div class="co">Dextris Infoservices</div><div class="yr">2025 – 2026</div><div class="st">succeeded</div></a></li>
+      <li class="stage run"><div class="dot">▶</div><a href="#publicis"><div class="co">Future Focus / Publicis Sapient</div><div class="yr">Jun 2026 – now</div><div class="st">running</div></a></li>
+    </ol>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="ex">
+  <div class="sechead"><h2 id="ex">Experience</h2><span class="label">Most recent first</span></div>
+  <div class="jobs">
+
+    <article class="job" id="publicis">
+      <div class="meta"><h3>Future Focus / Publicis Sapient</h3><div class="when">Jun 2026 – Present · 5 mos</div><span class="badge">Current</span></div>
+      <div class="body">
+        <div class="eng">
+          <h4>Sr. Azure DevOps Engineer</h4><div class="client">Client: Advocating Borough</div>
+          <ul>
+            <li>Designing and maintaining Azure infrastructure with reusable Terraform modules and Infrastructure as Code practices.</li>
+            <li>Building YAML-based CI/CD pipelines in Azure DevOps to automate build, test and release across Dev, UAT and Prod.</li>
+            <li>Securing App Services, Storage Accounts and Key Vaults with Private Endpoints, Private DNS Zones and RBAC.</li>
+          </ul>
+          <details><summary>Show all</summary><ul>
+            <li>Managing Azure DevOps Repos, Boards, Artifacts, environments and variable groups to keep releases consistent and traceable.</li>
+            <li>Implementing Entra ID access controls and Key Vault–based secret management to enforce least-privilege access.</li>
+            <li>Configuring Azure Monitor, Log Analytics and alerting to improve observability and speed up incident response.</li>
+            <li>Automating routine operational tasks with PowerShell, Azure CLI and Bash.</li>
+            <li>Working with Publicis Sapient delivery teams and client stakeholders in Agile sprints; writing runbooks and infrastructure documentation.</li>
+          </ul></details>
+          <div class="tags"><span class="tag">Terraform</span><span class="tag">Azure DevOps</span><span class="tag">YAML pipelines</span><span class="tag">Key Vault</span><span class="tag">Azure Monitor</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="job" id="dextris">
+      <div class="meta"><h3>Dextris Infoservices</h3><div class="when">Oct 2025 – Jun 2026 · 8 mos</div><div class="when">Bangalore, India</div></div>
+      <div class="body">
+        <div class="eng">
+          <h4>Azure Cloud Architect / Sr. Azure DevOps Engineer</h4><div class="client">Client: IHH Healthcare · IHH Data Platform</div>
+          <ul>
+            <li>Built multi-region infrastructure across Hong Kong, Malaysia, Singapore and India: 15 environments (Dev, UAT, Prod) from standardized Terraform modules.</li>
+            <li>Provisioned Databricks (2 workspaces per environment), Logic Apps, Web Apps, Storage Accounts and Key Vaults behind Private Endpoints, Private Links and Private DNS Zones.</li>
+            <li>Integrated Wiz CLI to scan Azure repositories and deployed CrowdStrike and Splunk agents across all IDMC and OPDG servers, with diagnostic logs streaming to Splunk.</li>
+          </ul>
+          <details><summary>Show all</summary><ul>
+            <li>Designed reusable Terraform modules and root modules to orchestrate scalable deployments.</li>
+            <li>Automated Databricks cluster creation for data processing and analytics workloads.</li>
+            <li>Set up RBAC permissions for secure, role-based team access.</li>
+            <li>Created and managed Azure DevOps Repos, Boards, Artifacts and variable groups for traceable releases.</li>
+            <li>Delivered a repeatable infrastructure pattern that improved security posture and accelerated environment setup across regions.</li>
+            <li>Wrote implementation playbooks, CrowdStrike/Splunk installation guides and Wiz CLI documentation aligned with compliance requirements.</li>
+          </ul></details>
+          <div class="tags"><span class="tag">Terraform</span><span class="tag">Databricks</span><span class="tag">Private Link</span><span class="tag">Wiz</span><span class="tag">Splunk</span><span class="tag">CrowdStrike</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="job" id="convergent">
+      <div class="meta"><h3>Convergent IT</h3><div class="when">Jun 2024 – Sep 2025 · 1 yr 3 mos</div><div class="when">Virginia, USA</div></div>
+      <div class="body">
+        <div class="eng">
+          <h4>Sr. Azure Cloud Engineer / Azure DevOps Engineer</h4><div class="client">Client: Lam Research</div>
+          <ul>
+            <li>Ran enterprise Azure IaaS: VMs, Availability Zones, VNets, Load Balancers, VPN Gateway, VNet Peering and ExpressRoute.</li>
+            <li>Supported GCP (Compute Engine, VPC, IAM, GKE) and administered Kubernetes workloads on AKS and GKE.</li>
+            <li>Automated provisioning with Terraform, ARM, Bicep, PowerShell and Azure CLI across Azure and GCP.</li>
+          </ul>
+          <details><summary>Show all</summary><ul>
+            <li>Managed Azure Backup and Azure Site Recovery for business continuity and DR compliance.</li>
+            <li>Monitored infrastructure with Azure Monitor, Log Analytics, Application Insights and custom dashboards.</li>
+            <li>Applied RBAC, IAM policies, Managed Identities and Service Principals across both clouds.</li>
+            <li>Handled incident, problem and change management in ServiceNow, including RCA within SLA.</li>
+            <li>Supported hybrid connectivity between on-premises datacenters, Azure and GCP.</li>
+            <li>Recommended cost optimization, rightsizing and resource governance.</li>
+            <li>Maintained runbooks, SOPs, architecture and DR documentation; took part in 24x7 support rotations.</li>
+          </ul></details>
+          <div class="tags"><span class="tag">AKS</span><span class="tag">GKE</span><span class="tag">Bicep</span><span class="tag">ExpressRoute</span><span class="tag">ASR</span><span class="tag">ServiceNow</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="job" id="hitachi">
+      <div class="meta"><h3>Hitachi Digital Services</h3><div class="when">Jun 2021 – Mar 2024 · 2 yrs 9 mos</div><div class="when">Bangalore, India</div></div>
+      <div class="body">
+        <div class="eng">
+          <h4>Sr. Azure Cloud IaaS-PaaS Engineer</h4><div class="client">Client: Novartis Pharma</div>
+          <ul>
+            <li>Ran Azure data platforms including Function Apps, Logic Apps, Key Vault, Databricks, ADLS, ADF, Synapse and Elasticsearch.</li>
+            <li>Provided run-the-engine and on-call support for the Enterprise Data Warehouse and Data Lake.</li>
+            <li>Applied MFA, Just-In-Time VM access and Defender for Cloud; kept platforms SOX and ITIL compliant.</li>
+          </ul>
+          <details><summary>Show all</summary><ul>
+            <li>Managed VNets, ExpressRoute, VPN gateways, load balancers, Azure Files, Blob Storage and Managed Disks.</li>
+            <li>Handled upgrades, license management and key/certificate rotations across EDW, Data Lake, BI and Azure.</li>
+            <li>Documented resolutions in the Known Errors Database and support processes in Confluence.</li>
+          </ul></details>
+        </div>
+        <div class="eng">
+          <h4>Azure Security Engineer</h4>
+          <ul>
+            <li>Ran Defender for Cloud and deployed Microsoft Sentinel for log analysis, alerting and automated response.</li>
+            <li>Enforced Zero Trust with Conditional Access, RBAC and Privileged Identity Management.</li>
+            <li>Built security automation playbooks with Logic Apps, PowerShell and Microsoft Graph API.</li>
+          </ul>
+          <div class="tags"><span class="tag">Sentinel</span><span class="tag">Defender</span><span class="tag">PIM</span><span class="tag">Synapse</span><span class="tag">ADF</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="job" id="cognizant">
+      <div class="meta"><h3>Cognizant Technology Solutions</h3><div class="when">Nov 2017 – Jun 2021 · 3 yrs 7 mos</div><div class="when">Bangalore, India</div></div>
+      <div class="body">
+        <div class="eng">
+          <h4>Senior Azure AD Engineer</h4><div class="client">Client: Swiss Re</div>
+          <ul>
+            <li>Designed environments and landing zones; ran Azure AD tenant administration, SSO and MFA.</li>
+            <li>Integrated third-party apps using SAML, OAuth 2.0 and SCIM; remediated identity threats with Defender for Identity.</li>
+          </ul>
+        </div>
+        <div class="eng">
+          <h4>Azure Migration Engineer</h4><div class="client">Client: Albertsons</div>
+          <ul><li>Assessed on-premises servers, storage, networks and dependencies; estimated Azure costs and built the phased migration roadmap.</li></ul>
+        </div>
+        <div class="eng">
+          <h4>Azure IaaS Cloud Engineer</h4><div class="client">Client: MedStar Health</div>
+          <ul><li>Automated end-to-end infrastructure with IaC through Azure DevOps; deployed IaaS VMs and PaaS roles into secure VNets.</li></ul>
+        </div>
+        <div class="eng">
+          <h4>Site Reliability Engineer</h4><div class="client">Client: Caterpillar</div>
+          <ul><li>Patched and monitored production servers and Azure VMs, enforced JIT policies, and deployed releases in approved change windows.</li></ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="job" id="softenger">
+      <div class="meta"><h3>Softenger</h3><div class="when">Oct 2015 – Jun 2017 · 1 yr 8 mos</div><div class="when">Pune, India</div></div>
+      <div class="body">
+        <div class="eng">
+          <h4>Windows-VMware Engineer</h4><div class="client">Client: UBS (Swiss Bank)</div>
+          <ul>
+            <li>Built VMware clusters with HA and DRS and migrated VMs with vMotion.</li>
+            <li>Designed virtual networks for 5,000+ users across 4 clients and peered 15+ virtual networks.</li>
+            <li>Synchronized identities between on-premises and cloud directories for 3,500+ user accounts.</li>
+          </ul>
+          <details><summary>Show all</summary><ul>
+            <li>Ran Windows Server, DNS, DHCP, Active Directory and firewalls for HIPAA-compliant environments.</li>
+            <li>Configured security groups, SSL certificates and network ACLs protecting 100+ applications.</li>
+            <li>Deployed cloud databases and monitoring with Infrastructure as Code and scripting.</li>
+          </ul></details>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="sk">
+  <div class="sechead"><h2 id="sk">Skills</h2><span class="label">Toolchain</span></div>
+  <div class="skills">
+    <div class="skill"><h3>DevOps &amp; IaC</h3><ul><li>Terraform: modules, state, multi-cloud</li><li>ARM templates and Bicep</li><li>Azure DevOps, GitHub Actions, Jenkins</li><li>PowerShell, Azure CLI, Bash</li></ul></div>
+    <div class="skill"><h3>Azure platform</h3><ul><li>IaaS, PaaS and hybrid cloud with Azure Arc</li><li>AKS and GKE</li><li>Databricks, ADF, Synapse, ADLS</li><li>Azure Backup and Site Recovery</li></ul></div>
+    <div class="skill"><h3>Security &amp; identity</h3><ul><li>Entra ID, Conditional Access, PIM</li><li>Defender for Cloud, Sentinel</li><li>Zero Trust, RBAC, MFA</li><li>Wiz, CrowdStrike</li></ul></div>
+    <div class="skill"><h3>Networking</h3><ul><li>VNets, NSGs, peering, route tables</li><li>Private Endpoints, Private Link, Private DNS</li><li>ExpressRoute and VPN Gateway</li></ul></div>
+    <div class="skill"><h3>Observability</h3><ul><li>Azure Monitor, Log Analytics</li><li>Application Insights</li><li>Splunk</li></ul></div>
+    <div class="skill"><h3>Infrastructure</h3><ul><li>Windows, Red Hat Linux, Solaris</li><li>VMware vSphere and vSAN</li><li>Oracle, MS SQL, MySQL</li><li>ITIL, ServiceNow, SOX audits</li></ul></div>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="ce">
+  <div class="sechead"><h2 id="ce">Certifications</h2><span class="label">Verified on Credly</span></div>
+  <div class="certs">
+    <a class="cert" href="https://www.credly.com/badges/75ca5fd8-7ce5-47a3-beb9-87ba2e99f387" target="_blank" rel="noopener"><span class="code">AZ-305</span><span class="nm">Azure Solutions Architect Expert</span><span class="vf">View badge ↗</span></a>
+    <a class="cert" href="https://www.credly.com/badges/3b509cf1-99b9-41e4-87a7-c98b0b871b78" target="_blank" rel="noopener"><span class="code">AZ-400</span><span class="nm">Designing and Implementing Microsoft DevOps Solutions</span><span class="vf">View badge ↗</span></a>
+    <a class="cert" href="https://www.credly.com/badges/e701727d-5c3f-411e-96e3-a8f13a3d8c74" target="_blank" rel="noopener"><span class="code">AZ-500</span><span class="nm">Azure Security Technologies</span><span class="vf">View badge ↗</span></a>
+    <a class="cert" href="https://www.credly.com/badges/582a58c8-6e0a-40fa-a2b7-1b5e8d05dcbd" target="_blank" rel="noopener"><span class="code">TA-003</span><span class="nm">HashiCorp Terraform Associate</span><span class="vf">View badge ↗</span></a>
+    <a class="cert" href="https://www.credly.com/badges/7d3127f4-fea9-4654-9d7d-46585ca16c2e" target="_blank" rel="noopener"><span class="code">AZ-303</span><span class="nm">Azure Architect Technologies</span><span class="vf">View badge ↗</span></a>
+    <a class="cert" href="https://www.credly.com/badges/acf3e31d-a429-449e-add6-32c1de01498b" target="_blank" rel="noopener"><span class="code">AZ-304</span><span class="nm">Azure Architect Design</span><span class="vf">View badge ↗</span></a>
+    <a class="cert" href="https://www.credly.com/badges/fb459b36-e321-4c01-8400-6fcad3287c0c" target="_blank" rel="noopener"><span class="code">PCA</span><span class="nm">Google Professional Cloud Architect</span><span class="vf">View badge ↗</span></a>
+    <a class="cert" href="https://www.credly.com/badges/c7c28a1b-c198-41ab-ad6b-4108d0c6ece2" target="_blank" rel="noopener"><span class="code">CLF</span><span class="nm">AWS Cloud Practitioner</span><span class="vf">View badge ↗</span></a>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="ed">
+  <div class="sechead"><h2 id="ed">Education</h2></div>
+  <div class="edu">
+    <div><b>Master of Computer Applications</b><span>Sri Venkateswara University, Tirupati · 2012</span></div>
+    <div><b>B.Sc. Computer Science</b><span>Sri Venkateswara University, Tirupati · 2009</span></div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">Gurappa Mangala · Azure Cloud Architect &amp; Sr. Azure DevOps Engineer · gurappam7@gmail.com</footer>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.copy), t=el.textContent;
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)};
+    var sel=function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'};
+    try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
+  });
+});
+</script>
+</body>
+</html>
